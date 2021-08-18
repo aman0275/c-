@@ -9,22 +9,27 @@ bool isSafe(vector<vector<int>>&arr,int x,int y,int n){
 	}
 }
 
-void traverse(vector<vector<int>>&arr, int x ,int y,int n,int count){
-
+int traverse(vector<vector<int>>&arr, int x ,int y,int n,int count){
+	if(count == n*n){
+		return 1;
+	}
 	int xnate[] = {1,2,2,1,-1,-2,-2,-1};
 	int ynate[] = {2,1,-1,-2,-2,-1,1,2};
 
-	arr[x][y] = count;
-	count++;
+	
+
 	for(int i=0;i<8;i++){
 		if(isSafe(arr,x+xnate[i],y+ynate[i],n)){
-			traverse(arr,x+xnate[i],y+ynate[i],n,count);
+			arr[x+xnate[i]][y+ynate[i]] = count;
+			if(traverse(arr,x+xnate[i],y+ynate[i],n,count+1)==1){
+				return 1;
+			}else{
+				arr[x+xnate[i]][y+ynate[i]] = -1;
+			}
 		}
 	}
+	return 0;
 
-
-
-	return;
 }
 
 
@@ -36,7 +41,10 @@ int n = 8;
 
 vector<vector<int>> arr(n,vector<int>(n,-1));
 
-traverse(arr,x,y,n,1);
+int count = 0;
+arr[x][y] = 0;
+
+int ans = traverse(arr,x,y,n,count+1);
 
 
 for (int i = 0; i < n; ++i){
