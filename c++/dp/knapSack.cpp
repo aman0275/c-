@@ -16,7 +16,7 @@ class Solution
            return dp[n][w] = solve(w,wt,val,n-1);
        }
        
-       return max(solve(w,wt,val,n-1),val[n] + solve(w-wt[n],wt,val,n-1)); 
+       return dp[n][w] = max(solve(w,wt,val,n-1),val[n] + solve(w-wt[n],wt,val,n-1)); 
     }
     
     int knapSack(int w, int wt[], int val[], int n) 

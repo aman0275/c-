@@ -30,6 +30,7 @@ class Car{
 class ElectricCar : public Car{
 	int miles;
 	int batteryLeft;
+	double accelaration=0;
 
 	public:
 	 ElectricCar(string name , int speed , int weight,int miles, int batteryLeft):Car(name,speed,batteryLeft){
@@ -40,7 +41,19 @@ class ElectricCar : public Car{
 	 void printObjChild(){
  		cout<< miles<<endl;
  		cout<< batteryLeft<<endl;
- 	} 	
+ 		cout<< accelaration<<endl;
+ 	}
+
+ 	void setAccelaration(int accelaration){
+ 		this->accelaration = accelaration;
+ 	}
+
+
+ 	void setAccelaration(double accelaration){
+ 		this->accelaration = accelaration;
+ 	}
+
+
 };
 
 
@@ -54,7 +67,14 @@ int main(){
 
 	cout<<"inheritance - "<<endl;
 	ElectricCar ev("Tesla",340,1400,569,50);
+	
+	int acc = 3;
+	double accd = 2.777;
+	ev.setAccelaration(acc);
+	ev.setAccelaration(accd);
+
 	ev.printObjChild();
-	ev.printObj();
+	// ev.printObj();
+	// for operator overloading we write operator +
 
 }
